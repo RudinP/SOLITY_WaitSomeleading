@@ -1,9 +1,28 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Moving_Object : MonoBehaviour
 {
+    static public Moving_Object instance;
+    public string currentMapName; // 이동할 맵 이름 저장
+
     private float moveSpeed = 3.0f;     //이동 속도
     private Vector3 moveDirection = Vector3.zero;   // 이동 방향
+
+
+    void Start ()
+    {
+        if(instance == null)
+        {
+            DontDestroyOnLoad(this.gameObject);   /// 나중에 애니메이션이나 boxcollider 여기 위치에 넣어야함!
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
     private void Update()
     {
