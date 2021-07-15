@@ -57,15 +57,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\TransferMap.cs" />
-    <Compile Include="Assets\30PixelCharactersPack\Other\Mover.cs" />
+    <Compile Include="Assets\Script\Mover.cs" />
     <Compile Include="Assets\Script\NPC_DontDestroy.cs" />
     <Compile Include="Assets\Script\CameraManager.cs" />
     <Compile Include="Assets\Script\NPCDialogue.cs" />
     <Compile Include="Assets\Script\DialogueManager.cs" />
+    <Compile Include="Assets\Script\Menu.cs" />
     <Compile Include="Assets\Script\Moving_Object.cs" />
     <Compile Include="Assets\Script\StartPoint.cs" />
     <Compile Include="Assets\Script\Dialogue.cs" />
-    <Compile Include="Assets\Script\Menu.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\PixelForestPack\README.txt" />
