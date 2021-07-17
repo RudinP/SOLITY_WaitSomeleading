@@ -30,7 +30,10 @@ public class DialogueManager : MonoBehaviour
 
     private int count; // 대화 진행 상황 카운트
 
+    private OrderManager theOrder;
+
     public bool talking = false;
+    private bool keyActivated = false;
 
     void Start()
     {
@@ -39,6 +42,7 @@ public class DialogueManager : MonoBehaviour
         Name.text = "";
         listSentences = new List<string>();
         listNames = new List<string>();
+        theOrder = FindObjectOfType<OrderManager>();
     }
 
     public void ShowDialogue(Dialogue dialogue) // 대화 출력
@@ -46,6 +50,7 @@ public class DialogueManager : MonoBehaviour
         if(!talking)
         {
             talking = true;
+            theOrder.NotMove();
 
             for (int i = 0; i < dialogue.sentences.Length; i++)
             {
@@ -65,11 +70,13 @@ public class DialogueManager : MonoBehaviour
         listSentences.Clear();
         listNames.Clear();
         talking = false;
+        theOrder.Move();
     }
 
     IEnumerator StartDialogueCoroutine()
     {
         Name.text = listNames[count];
+        keyActivated = true;
 
         for (int i = 0; i < listSentences[count].Length; i++)
         {
@@ -80,10 +87,11 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
-        if (talking)
+        if (talking && keyActivated)
         {
             if (Input.GetKeyDown(KeyCode.Z)) // z키 입력시 다음 대사 출력
             {
+                keyActivated = false;
                 count++;
                 text.text = "";
                 Name.text = "";
