@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class TransferMap : MonoBehaviour
 {
-    public string transferMapName; // 이동할 맵의 이름
+    public string transferMapName; 
 
     private Moving_Object thePlayer;
     private NPC_DontDestroy theNPCDont;                           
