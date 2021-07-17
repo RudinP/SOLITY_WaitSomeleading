@@ -5,19 +5,17 @@ using UnityEngine;
 public class Moving_Object : MonoBehaviour
 {
     static public Moving_Object instance;
-    public string currentMapName; // ÀÌµ¿ÇÒ ¸Ê ÀÌ¸§ ÀúÀå
+    public string currentMapName; // ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-    private float moveSpeed = 3.0f;     //ÀÌµ¿ ¼Óµµ
-    private Vector3 moveDirection = Vector3.zero;   // ÀÌµ¿ ¹æÇâ
-
-    public bool notMove = false;
+    private float moveSpeed = 3.0f;     //ï¿½Ìµï¿½ ï¿½Óµï¿½
+    private Vector3 moveDirection = Vector3.zero;   // ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
 
 
     void Start ()
     {
         if(instance == null)
         {
-            DontDestroyOnLoad(this.gameObject);   /// ³ªÁß¿¡ ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ³ª boxcollider ¿©±â À§Ä¡¿¡ ³Ö¾î¾ßÇÔ!
+            DontDestroyOnLoad(this.gameObject);   /// ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½Ì³ï¿½ boxcollider ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½!
             instance = this;
         }
         else
@@ -28,23 +26,20 @@ public class Moving_Object : MonoBehaviour
 
     private void Update()
     {
-        if (!notMove)
-        {
-            // Negative left, a : -1
-            // Positive right, d : -1
-            // Non : 0
-            float x = Input.GetAxisRaw("Horizontal");   //ÁÂ¿ì ÀÌµ¿
-                                                        // Negative down, s : -1
-                                                        // Positive up, w : 1
-                                                        // non : 0
-            float y = Input.GetAxisRaw("Vertical"); //À§¾Æ·¡ ÀÌµ¿
+        // Negative left, a : -1
+        // Positive right, d : -1
+        // Non : 0
+        float x = Input.GetAxisRaw("Horizontal");   //ï¿½Â¿ï¿½ ï¿½Ìµï¿½
+        // Negative down, s : -1
+        // Positive up, w : 1
+        // non : 0
+        float y = Input.GetAxisRaw("Vertical"); //ï¿½ï¿½ï¿½Æ·ï¿½ ï¿½Ìµï¿½
 
-            //ÀÌµ¿¹æÇâ ¼³Á¤
-            moveDirection = new Vector3(x, y, 0);
+        //ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        moveDirection = new Vector3(x, y, 0);
 
-            //»õ·Î¿î À§Ä¡= ÇöÀç À§Ä¡ + (¹æÇâ * ¼Óµµ)
-            transform.position += moveDirection * moveSpeed * Time.deltaTime;
-        }
+        //ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½Ä¡= ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ + (ï¿½ï¿½ï¿½ï¿½ * ï¿½Óµï¿½)
+        transform.position += moveDirection * moveSpeed * Time.deltaTime;
     }
 }
   
