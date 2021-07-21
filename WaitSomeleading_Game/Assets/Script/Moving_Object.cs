@@ -8,10 +8,10 @@ public class Moving_Object : MonoBehaviour
     public string currentMapName; // 이동할 맵 이름 저장
 
     private float moveSpeed = 3.0f;     //이동 속도
-    private Vector3 moveDirection = Vector3.zero;   // 이동 방향
+    public Vector3 moveDirection = Vector3.zero;   // 이동 방향
 
     public bool notMove = false;
-
+    public bool eventOn = false;
 
     void Start()
     {
@@ -44,6 +44,13 @@ public class Moving_Object : MonoBehaviour
 
             //새로운 위치= 현재 위치 + (방향 * 속도)
             transform.position += moveDirection * moveSpeed * Time.deltaTime;
+        }
+        else
+        {
+            if(eventOn)
+            {
+                transform.position += moveDirection * moveSpeed * Time.deltaTime;
+            }
         }
     }
 }
