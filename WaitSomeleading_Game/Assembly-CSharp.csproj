@@ -56,7 +56,6 @@
      <Compile Include="Assets\Script\DialogueManager.cs" />
      <Compile Include="Assets\Script\Menu.cs" />
      <Compile Include="Assets\Script\Moving_Object.cs" />
-     <Compile Include="Assets\Script\StartPoint.cs" />
      <Compile Include="Assets\Script\Dialogue.cs" />
      <None Include="Assets\PixelForestPack\README.txt" />
  <Reference Include="UnityEngine">
