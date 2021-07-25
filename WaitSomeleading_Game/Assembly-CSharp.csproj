@@ -83,6 +83,7 @@
     <Compile Include="Assets\Script\StartPoint.cs" />
     <Compile Include="Assets\Script\EventPoint3.cs" />
     <Compile Include="Assets\Script\Dialogue.cs" />
+    <Compile Include="Assets\Script\Alvin_Follow.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\PixelForestPack\README.txt" />
