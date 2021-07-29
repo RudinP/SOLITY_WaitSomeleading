@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TransferMap2 : MonoBehaviour
+public class TransferMap : MonoBehaviour
 {
     public string transferMapName; 
 

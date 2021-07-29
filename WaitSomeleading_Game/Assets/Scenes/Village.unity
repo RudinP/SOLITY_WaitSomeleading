@@ -7282,7 +7282,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 217647123}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.12, y: 12.48, z: 0}
+  m_LocalPosition: {x: -1.3, y: 9.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -18251,6 +18251,8 @@ GameObject:
   - component: {fileID: 485892327}
   - component: {fileID: 485892326}
   - component: {fileID: 485892329}
+  - component: {fileID: 485892328}
+  - component: {fileID: 485892330}
   m_Layer: 0
   m_Name: Player_Alvin
   m_TagString: Untagged
@@ -18323,6 +18325,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &485892328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485892325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7239287ca9f8694086def47bdb7c688, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notMove: 0
+  eventOn: 0
 --- !u!61 &485892329
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18349,6 +18365,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.35419083, y: 0.21398306}
   m_EdgeRadius: 0
+--- !u!114 &485892330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485892325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6b02c4b02330de4db027f93150507ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &517201315
 GameObject:
   m_ObjectHideFlags: 0
