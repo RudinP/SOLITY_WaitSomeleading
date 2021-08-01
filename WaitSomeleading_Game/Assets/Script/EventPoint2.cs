@@ -5,6 +5,7 @@ using UnityEngine;
 public class EventPoint2 : MonoBehaviour
 {
     public static EventPoint2 instance;
+    public static bool event2 = false;
 
     #region Singleton
     private void Awake()
@@ -76,6 +77,7 @@ public class EventPoint2 : MonoBehaviour
         theDM.ShowDialogue(dialogue6);
         yield return new WaitUntil(() => !theDM.talking);
 
+        event2 = true;
         theOrder.Move();
     }
 }

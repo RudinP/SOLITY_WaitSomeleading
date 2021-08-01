@@ -5,7 +5,7 @@ using UnityEngine;
 public class EventPoint3 : MonoBehaviour
 {
     public static EventPoint3 instance;
-
+    public static bool event3 = false;
     #region Singleton
     private void Awake()
     {
@@ -94,6 +94,7 @@ public class EventPoint3 : MonoBehaviour
         theOrder.Left(2f);
         yield return new WaitUntil(() => !theOrder.doEvent);
 
+        event3 = true;
         eventOn = false;
         theOrder.Move();
     }

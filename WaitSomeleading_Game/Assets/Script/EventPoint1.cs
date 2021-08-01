@@ -6,6 +6,8 @@ public class EventPoint1 : MonoBehaviour
 {
     public static EventPoint1 instance;
 
+    public static bool event1 = false;
+
     #region Singleton
     private void Awake()
     {
@@ -96,7 +98,8 @@ public class EventPoint1 : MonoBehaviour
 
         theDM.ShowDialogue(dialogue8);
         yield return new WaitUntil(() => !theDM.talking);
-        
+
+        event1 = true;
         theOrder.Move();
     }
 }
