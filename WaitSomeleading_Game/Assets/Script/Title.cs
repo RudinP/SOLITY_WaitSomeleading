@@ -1,5 +1,5 @@
 /*
-using System.Collections;   // Âê²Ù¸£ Á¦ÀÛÇÏ±â 12ºÐ 46ÃÊ±îÁö µû¶óÇÔ.
+using System.Collections;   // ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ 12ï¿½ï¿½ 46ï¿½Ê±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,16 +9,13 @@ public class TransferMap : MonoBehaviour
 
     private FadeManager theFade;
 
-    private PlayerManager thePlayer;
+    private Moving_Object thePlayer;
     private GameManager theGM;
 
-
-
-    // Start is called before the first frame update
     void Start()
     {
         theFade = FindObjectOfType<FadeManager>();
-        thePlayer = FindObjectOfType<PlayerManager>();
+        thePlayer = FindObjectOfType<Moving_Object>();
         theGM = FindObjectOfType<GameManager>();
 
     }

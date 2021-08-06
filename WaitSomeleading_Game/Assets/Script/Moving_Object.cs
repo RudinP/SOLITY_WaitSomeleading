@@ -6,6 +6,10 @@ public class Moving_Object : MonoBehaviour
 {
     static public Moving_Object instance;
     public string currentMapName; // 이동할 맵 이름 저장
+    public string futureMapName; // 이전에 있었던 맵 이름
+    public string futurefutureMapName; // 이전의 이전
+
+    private SaveLoad theSaveLoad;
 
     private float moveSpeed = 3.0f;     //이동 속도
     public Vector3 moveDirection = Vector3.zero;   // 이동 방향
@@ -15,9 +19,11 @@ public class Moving_Object : MonoBehaviour
 
     void Start()
     {
+        theSaveLoad = FindObjectOfType<SaveLoad>();
+
         if (instance == null)
         {
-            DontDestroyOnLoad(this.gameObject);   /// 나중에 애니메이션이나 boxcollider 여기 위치에 넣어야함!
+            DontDestroyOnLoad(this.gameObject);  
             instance = this;
         }
         else
@@ -28,6 +34,18 @@ public class Moving_Object : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.F5))
+        {
+            theSaveLoad.CallSave();
+            // save
+
+        }
+        if(Input.GetKeyDown(KeyCode.F9))
+        {
+            theSaveLoad.CallLoad();
+            // load
+        }
+
         if (!notMove)
         {
             // Negative left, a : -1

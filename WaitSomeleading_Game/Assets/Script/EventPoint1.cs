@@ -67,12 +67,6 @@ public class EventPoint1 : MonoBehaviour
         yield return new WaitUntil(() => !theOrder.doEvent);
         theOrder.Down(0.5f);
         yield return new WaitUntil(() => !theOrder.doEvent);
-        theOrder.Right(0.5f);
-        yield return new WaitUntil(() => !theOrder.doEvent);
-        theOrder.Up(0.5f);
-        yield return new WaitUntil(() => !theOrder.doEvent);
-        theOrder.Left(0.5f);
-        yield return new WaitUntil(() => !theOrder.doEvent);
         theOrder.TurnDown();
         
 
