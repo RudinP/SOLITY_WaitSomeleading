@@ -41,8 +41,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3299971865
+    locked: 0
+  - name: Npc
+    uniqueID: 4176723019
+    locked: 0
   - name: Player
     uniqueID: 3021241123
+    locked: 0
+  - name: Tree
+    uniqueID: 1456969897
     locked: 0
   - name: UI
     uniqueID: 3467630037

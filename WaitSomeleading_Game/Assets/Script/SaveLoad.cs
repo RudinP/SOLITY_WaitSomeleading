@@ -57,20 +57,27 @@ public class SaveLoad : MonoBehaviour {
     public void CallLoad()
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(Application.dataPath + "/SaveFile.dat", FileMode.Open);
+        string strFile = Application.dataPath + "/SaveFile.dat";
+        FileInfo fileInfo = new FileInfo(strFile);
 
-        if(file != null && file.Length > 0)
-        {
-            data = (Data)bf.Deserialize(file);
-
-            StartCoroutine(LoadCoroutine());
-        }
-        else
+        if(!fileInfo.Exists)
         {
             Debug.Log("저장된 세이브 파일이 없습니다");
         }
 
-        file.Close();
+        else
+        {
+            FileStream file = File.Open(Application.dataPath + "/SaveFile.dat", FileMode.Open);
+
+            if (file != null && file.Length > 0)
+            {
+                data = (Data)bf.Deserialize(file);
+
+                StartCoroutine(LoadCoroutine());
+            }
+
+            file.Close();
+        }
     }
 
     IEnumerator LoadCoroutine()

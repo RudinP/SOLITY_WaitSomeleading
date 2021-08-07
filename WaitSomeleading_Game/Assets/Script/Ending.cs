@@ -208,5 +208,7 @@ public class Ending : MonoBehaviour
 
         endCheck = false;
         theOrder.Move();
+
+        SceneManager.LoadScene("Title2");
     }
 }

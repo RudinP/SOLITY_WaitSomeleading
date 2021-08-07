@@ -18,6 +18,8 @@ public class CameraManager : MonoBehaviour
     private float halfWidth;
     private float halfHeight;
 
+    private Moving_Object thePlayer;
+
     private Camera theCamera;
 
     private void Awake()
@@ -39,12 +41,19 @@ public class CameraManager : MonoBehaviour
         maxBound = bound.bounds.max;
         halfHeight = theCamera.orthographicSize;
         halfWidth = halfHeight * Screen.width / Screen.height;
+        target = GameObject.Find("Player_Anna");
+        thePlayer = FindObjectOfType<Moving_Object>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(target.gameObject != null)
+        if (thePlayer.currentMapName == "Title2")
+        {
+            this.transform.position = new Vector3(0, 0, -10);
+        }
+
+        else if(target.gameObject != null)
         {
             targetPosition.Set(target.transform.position.x, target.transform.position.y, this.transform.position.z);
 

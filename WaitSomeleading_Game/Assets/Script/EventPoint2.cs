@@ -32,6 +32,7 @@ public class EventPoint2 : MonoBehaviour
     
     private DialogueManager theDM;
     private OrderManager theOrder;
+    private EventPoint3 theEvent3;
     private WaitForSeconds waitTime = new WaitForSeconds(0.5f);
     private bool flag;
 
@@ -41,6 +42,7 @@ public class EventPoint2 : MonoBehaviour
     {
         theOrder = FindObjectOfType<OrderManager>();
         theDM = FindObjectOfType<DialogueManager>();
+        theEvent3 = FindObjectOfType<EventPoint3>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -54,8 +56,8 @@ public class EventPoint2 : MonoBehaviour
 
     IEnumerator StartEvent2()
     {
-        // theOrder.NotMove();
-        // yield return waitTime;
+        theOrder.NotMove();
+        yield return waitTime;
 
         theDM.ShowDialogue(dialogue1);
         yield return new WaitUntil(() => !theDM.talking);
@@ -65,6 +67,8 @@ public class EventPoint2 : MonoBehaviour
 
         theDM.ShowDialogue(dialogue3);
         yield return new WaitUntil(() => !theDM.talking);
+        theOrder.Right(1f);
+        yield return new WaitUntil(() => !theOrder.doEvent);
         theOrder.Down(2f);
         yield return new WaitUntil(() => !theOrder.doEvent);
 
@@ -78,6 +82,7 @@ public class EventPoint2 : MonoBehaviour
         yield return new WaitUntil(() => !theDM.talking);
 
         event2 = true;
+        theEvent3.eventOn = true;
         theOrder.Move();
     }
 }

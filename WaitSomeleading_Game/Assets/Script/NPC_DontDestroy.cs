@@ -23,7 +23,12 @@ public class NPC_DontDestroy : MonoBehaviour
         }
     }
 
-    public void TransferMap()
+    void Start()
+    {
+        thePlayer = FindObjectOfType<Moving_Object>();
+    }
+
+    void Update()
     {
         if (thePlayer.currentMapName == MapName)
         {

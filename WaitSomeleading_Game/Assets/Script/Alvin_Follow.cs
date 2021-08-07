@@ -8,6 +8,7 @@ public class Alvin_Follow : MonoBehaviour
     private Vector2 dir;
     static public Alvin_Follow instance2;
     public string currentMapName;
+    private Moving_Object thePlayer;
 
     GameObject Anna;
     GameObject Alvin;
@@ -20,7 +21,8 @@ public class Alvin_Follow : MonoBehaviour
         Anna = GameObject.Find("Player_Anna");
         Alvin = GameObject.Find("Player_Alvin");
         sprite = GetComponent<SpriteRenderer>();
-        Alvin.transform.position = Anna.transform.position;
+        Alvin.transform.position = new Vector3(Anna.transform.position.x - 1, Anna.transform.position.y, 0);
+        thePlayer = FindObjectOfType<Moving_Object>();
 
         if (instance2 == null)
         {
@@ -36,61 +38,79 @@ public class Alvin_Follow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        distance = Anna.transform.position-Alvin.transform.position;
-
-        if (distance.x >= 1)
+        if(thePlayer.currentMapName != currentMapName)
         {
-            anim.SetBool("Walk", true);
-            dir.x = 1;
-            dir.y = 0;
-            Alvin.transform.position = new Vector3(Alvin.transform.position.x + distance.x - 1, Alvin.transform.position.y, 0);
-
+            Alvin.transform.position = new Vector3(Anna.transform.position.x + 1, Anna.transform.position.y, 0);
+            currentMapName = thePlayer.currentMapName;
         }
-        else if (distance.x <= -1)
-        {
-            anim.SetBool("Walk", true);
-            dir.x = -1;
-            dir.y = 0;
-            Alvin.transform.position = new Vector3(Alvin.transform.position.x + distance.x + 1, Alvin.transform.position.y, 0);
-        }
-        else if (distance.y >= 1)
-        {
-            anim.SetBool("Walk", true);
-            dir.x = 0;
-            dir.y = 1;
-            Alvin.transform.position = new Vector3(Alvin.transform.position.x, Alvin.transform.position.y + distance.y - 1, 0);
 
-            distance = Anna.transform.position - Alvin.transform.position;
-        }
-        else if (distance.y <= -1)
-        {
-
-            anim.SetBool("Walk", true);
-            dir.x = 0;
-            dir.y = -1;
-            Alvin.transform.position = new Vector3(Alvin.transform.position.x, Alvin.transform.position.y + distance.y + 1, 0);
-
-            anim.SetBool("Walk", true);
-            dir.x = 0;
-            dir.y = -1;
-            Alvin.transform.position = new Vector3(Alvin.transform.position.x, Alvin.transform.position.y + distance.y + 1, 0);
-
-            sprite.sortingOrder = -1;
-        }
         else
         {
+            distance = Anna.transform.position - Alvin.transform.position;
 
-            anim.SetBool("Walk", false);
+            if (distance.y > 0)
+            {
+                sprite.sortingOrder = 1;
+            }
 
+            else
+            {
+                sprite.sortingOrder = -1;
+            }
 
+            if (distance.x > 1 || distance.x < -1 || distance.y > 1 || distance.y < -1)
+            {
+                anim.SetBool("Walk", true);
+
+                if (distance.y > 1)
+                {
+                    dir.x = 0;
+                    dir.y = 1;
+
+                    anim.SetFloat("x", dir.x);
+                    anim.SetFloat("y", dir.y);
+
+                    Alvin.transform.position += new Vector3(dir.x, dir.y, 0) * 3.0f * Time.deltaTime;
+                }
+                if (distance.y < -1)
+                {
+                    dir.x = 0;
+                    dir.y = -1;
+
+                    anim.SetFloat("x", dir.x);
+                    anim.SetFloat("y", dir.y);
+
+                    Alvin.transform.position += new Vector3(dir.x, dir.y, 0) * 3.0f * Time.deltaTime;
+                }
+
+                if (distance.x > 1)
+                {
+                    dir.x = 1;
+                    dir.y = 0;
+                    anim.SetFloat("x", dir.x);
+                    anim.SetFloat("y", dir.y);
+
+                    Alvin.transform.position += new Vector3(dir.x, dir.y, 0) * 3.0f * Time.deltaTime;
+                }
+                if (distance.x < -1)
+                {
+                    dir.x = -1;
+                    dir.y = 0;
+                    anim.SetFloat("x", dir.x);
+                    anim.SetFloat("y", dir.y);
+
+                    Alvin.transform.position += new Vector3(dir.x, dir.y, 0) * 3.0f * Time.deltaTime;
+                }
+            }
+
+            else
+            {
+
+                anim.SetBool("Walk", false);
+
+            }
         }
-
-        anim.SetFloat("x", dir.x);
-        anim.SetFloat("y", dir.y);
-
     }
-
 }
 
 

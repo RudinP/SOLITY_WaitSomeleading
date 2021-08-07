@@ -28,25 +28,32 @@ public class EventPoint3 : MonoBehaviour
     public Dialogue dialogue4;
 
     public GameObject TCarea; //타임캡슐 위치
+    public GameObject Anna;
+    public GameObject Alvin;
 
     private DialogueManager theDM;
     private OrderManager theOrder;
     private TimeCapsuleManager theTCM;
+    private FadeManager theFade;
+    private Moving_Object thePlayer;
 
     private WaitForSeconds waitTime = new WaitForSeconds(0.5f);
 
-    private bool eventOn = true; //true일 때 이벤트 실행 가능
+    public bool eventOn = false; //true일 때 이벤트 실행 가능
 
     void Start()
     {
         theOrder = FindObjectOfType<OrderManager>();
         theTCM = FindObjectOfType<TimeCapsuleManager>();
         theDM = FindObjectOfType<DialogueManager>();
+        theFade = FindObjectOfType<FadeManager>();
+        thePlayer = FindObjectOfType<Moving_Object>();
+        Anna = GameObject.Find("Player_Anna");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(eventOn && Input.GetKey(KeyCode.LeftArrow))
+        if(eventOn && thePlayer.currentMapName == "Village")
         {
             StartCoroutine(StartEvent3());
         }
@@ -54,7 +61,16 @@ public class EventPoint3 : MonoBehaviour
 
     IEnumerator StartEvent3()
     {
+        eventOn = false;
         theOrder.NotMove();
+
+        theFade.FadeOut();
+        yield return waitTime;
+        Anna.transform.position = new Vector3(-11, 4, 0);
+        Alvin.transform.position = new Vector3(-10, 4, 0);
+        yield return waitTime;
+        theFade.FadeIn();
+        yield return waitTime;
         yield return waitTime;
 
         theOrder.TurnLeft();
@@ -95,7 +111,6 @@ public class EventPoint3 : MonoBehaviour
         yield return new WaitUntil(() => !theOrder.doEvent);
 
         event3 = true;
-        eventOn = false;
         theOrder.Move();
     }
 }

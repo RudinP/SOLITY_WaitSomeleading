@@ -4,6 +4,23 @@ using UnityEngine;
 
 public class FadeManager : MonoBehaviour {
 
+    public static FadeManager instance;
+
+    #region Singleton
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(this.gameObject);
+            instance = this;
+        }
+    }
+    #endregion Singleton
+
     public SpriteRenderer white;
     public SpriteRenderer black;
     private Color color;

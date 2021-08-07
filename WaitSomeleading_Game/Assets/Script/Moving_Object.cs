@@ -17,6 +17,8 @@ public class Moving_Object : MonoBehaviour
     public bool notMove = false;
     public bool eventOn = false;
 
+    public bool callLoad = false;
+
     void Start()
     {
         theSaveLoad = FindObjectOfType<SaveLoad>();
@@ -34,14 +36,15 @@ public class Moving_Object : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F5))
+        if(Input.GetKeyDown(KeyCode.F5) && currentMapName != "Title2")
         {
             theSaveLoad.CallSave();
             // save
 
         }
-        if(Input.GetKeyDown(KeyCode.F9))
+        if(Input.GetKeyDown(KeyCode.F9) && currentMapName != "Title2")
         {
+            callLoad = true;
             theSaveLoad.CallLoad();
             // load
         }

@@ -9,12 +9,10 @@ public class TransferMap : MonoBehaviour
 
     private Moving_Object thePlayer;
     private FadeManager theFade;
-    private NPC_DontDestroy theNPCDont;                           
 
     void Start()
     {
         thePlayer = FindObjectOfType<Moving_Object>();
-        theNPCDont = FindObjectOfType<NPC_DontDestroy>();
         theFade = FindObjectOfType<FadeManager>();
     }
     
@@ -34,11 +32,10 @@ public class TransferMap : MonoBehaviour
         thePlayer.futurefutureMapName = thePlayer.futureMapName;
         thePlayer.futureMapName = thePlayer.currentMapName;
         thePlayer.currentMapName = transferMapName;
-        
-        theNPCDont.TransferMap();
-        SceneManager.LoadScene(transferMapName);
-        theFade.FadeIn();
 
-     }
+        SceneManager.LoadScene(transferMapName);
+
+        theFade.FadeIn();
+    }
 
 }

@@ -27,6 +27,7 @@ public class OrderManager : MonoBehaviour
     private float x;
     private float y;
 
+    public GameObject player;
     public Animator playerAnim;
 
     public bool doEvent = false;
@@ -35,6 +36,8 @@ public class OrderManager : MonoBehaviour
     {
         thePlayer = FindObjectOfType<Moving_Object>();
         theAnim = FindObjectOfType<Mover>();
+        player = GameObject.Find("Player_Anna");
+        playerAnim = player.GetComponent<Animator>();
     }
 
     //플레이어 움직임 방지
