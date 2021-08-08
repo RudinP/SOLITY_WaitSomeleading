@@ -26,6 +26,7 @@ public class DestroyOnTitle : MonoBehaviour
 
     private Moving_Object thePlayer;
     private Ending theEnding;
+    private OrderManager theOrder;
     private SpriteRenderer _sprite;
     private Color color;
 
@@ -34,13 +35,14 @@ public class DestroyOnTitle : MonoBehaviour
     void Start()
     {
         thePlayer = FindObjectOfType<Moving_Object>();
+        theOrder = FindObjectOfType<OrderManager>();
         DestroyObject[0] = GameObject.Find("Player_Alvin");
         _sprite = DestroyObject[0].GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
-        if(!DestroyObject[5])
+        if(!DestroyObject[1] || !DestroyObject[2] || !DestroyObject[3] || !DestroyObject[4] || !DestroyObject[5])
         {
             DestroyObject[1] = GameObject.Find("VIllage_NPC");
             DestroyObject[2] = GameObject.Find("EventPoint3");
@@ -74,9 +76,11 @@ public class DestroyOnTitle : MonoBehaviour
 
     IEnumerator ActiveAlvin()
     {
-        yield return new WaitForSeconds(1f);
+        theOrder.NotMove();
+        yield return new WaitForSeconds(1.5f);
         color = _sprite.color;
         color.a = 255;
         _sprite.color = color;
+        theOrder.Move();
     }
 }

@@ -26,13 +26,23 @@ public class SaveLoad : MonoBehaviour {
         public string futureMapName; 
         public string futurefutureMapName; 
 
-        //public bool eventSave1;
+        public bool eventSave1;
+        public bool eventSave2;
+        public bool eventSave3;
+
+        public bool eventSave1_2;
+        public bool eventSave2_2;
+        public bool eventSave3_2;
+
+        public bool eventSave3_3;
     }
 
     private Moving_Object thePlayer;
     private FadeManager theFade;
     private Alvin_Follow theAlvin;
     private CameraManager theCamera;
+    private BGM_Manager theBGM;
+
     public Data data;
     private Vector3 vector;
 
@@ -59,7 +69,15 @@ public class SaveLoad : MonoBehaviour {
         data.futureMapName = thePlayer.futureMapName;
         data.futurefutureMapName = thePlayer.futurefutureMapName;
 
-        //data.eventSave1 = EventPoint1.event1;
+        data.eventSave1 = EventPoint1.event1;
+        data.eventSave2 = EventPoint2.event2;
+        data.eventSave3 = EventPoint3.event3;
+
+        data.eventSave1_2 = EventPoint1.flag;
+        data.eventSave2_2 = EventPoint2.flag;
+        data.eventSave3_2 = EventPoint3.eventOn;
+
+        data.eventSave3_3 = EventPoint3.TCA;
 
         Debug.Log("저장 성공");
 
@@ -109,15 +127,25 @@ public class SaveLoad : MonoBehaviour {
         theFade = FindObjectOfType<FadeManager>();
         theAlvin = FindObjectOfType<Alvin_Follow>();
         theCamera = FindObjectOfType<CameraManager>();
+        theBGM = FindObjectOfType<BGM_Manager>();
 
         theFade.FadeOut();
-        yield return new WaitForSeconds(1f);
+        theBGM.FadeOutMusic();
+        yield return new WaitForSeconds(1.5f);
 
         thePlayer.currentMapName = data.mapName;
         thePlayer.futureMapName = data.futureMapName;
         thePlayer.futurefutureMapName = data.futurefutureMapName;
 
-        //EventPoint1.event1 = data.eventSave1;
+        EventPoint1.event1 = data.eventSave1;
+        EventPoint2.event2 = data.eventSave2;
+        EventPoint3.event3 = data.eventSave3;
+
+        EventPoint1.flag = data.eventSave1_2;
+        EventPoint2.flag = data.eventSave2_2;
+        EventPoint3.eventOn = data.eventSave3_2;
+
+        EventPoint3.TCA = data.eventSave3_3;
 
         vector.Set(data.playerX, data.playerY, data.playerZ);
         thePlayer.transform.position = vector;
@@ -132,7 +160,7 @@ public class SaveLoad : MonoBehaviour {
         SceneManager.LoadScene(data.mapName);
         theFade.FadeIn();
 
-         Debug.Log("로드 성공");
+        Debug.Log("로드 성공");
 
         
     }

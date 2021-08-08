@@ -36,7 +36,7 @@ public class EventPoint1 : MonoBehaviour
     private OrderManager theOrder;
     private Moving_Object thePlayer;
     private WaitForSeconds waitTime = new WaitForSeconds(0.5f);
-    private bool flag;
+    public static bool flag;
 
 
     

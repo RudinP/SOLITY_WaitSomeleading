@@ -36,13 +36,13 @@ public class Moving_Object : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F5) && currentMapName != "Title2")
+        if(Input.GetKeyDown(KeyCode.F5) && currentMapName != "Title2" && !notMove)
         {
             theSaveLoad.CallSave();
             // save
 
         }
-        if(Input.GetKeyDown(KeyCode.F9) && currentMapName != "Title2")
+        if(Input.GetKeyDown(KeyCode.F9) && currentMapName != "Title2" && !notMove)
         {
             callLoad = true;
             theSaveLoad.CallLoad();

@@ -9,11 +9,15 @@ public class TransferMap : MonoBehaviour
 
     private Moving_Object thePlayer;
     private FadeManager theFade;
+    private BGM_Manager theBGM;
+    private OrderManager theOrder;
 
     void Start()
     {
         thePlayer = FindObjectOfType<Moving_Object>();
         theFade = FindObjectOfType<FadeManager>();
+        theBGM = FindObjectOfType<BGM_Manager>();
+        theOrder = FindObjectOfType<OrderManager>();
     }
     
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,8 +30,10 @@ public class TransferMap : MonoBehaviour
      
      IEnumerator TransferCoroutine()
      {
+        theOrder.NotMove();
         theFade.FadeOut();
-        yield return new WaitForSeconds(1f);
+        theBGM.FadeOutMusic();
+        yield return new WaitForSeconds(1.5f);
 
         thePlayer.futurefutureMapName = thePlayer.futureMapName;
         thePlayer.futureMapName = thePlayer.currentMapName;

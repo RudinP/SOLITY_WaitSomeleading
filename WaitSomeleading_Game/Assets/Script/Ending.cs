@@ -13,6 +13,7 @@ public class Ending : MonoBehaviour
     private OrderManager theOrder;
     private FadeManager theFade;
     private Moving_Object thePlayer;
+    private BGM_Manager theBGM;
     private WaitForSeconds waitTime = new WaitForSeconds(0.5f);
 
     public bool endCheck = false;
@@ -50,6 +51,7 @@ public class Ending : MonoBehaviour
         theDM = FindObjectOfType<DialogueManager>();
         theFade = FindObjectOfType<FadeManager>();
         thePlayer = FindObjectOfType<Moving_Object>();
+        theBGM = FindObjectOfType<BGM_Manager>();
         //endCheck = EndCheck();
         endCheck = true;
         Alvin = GameObject.Find("Player_Alvin");
@@ -74,16 +76,22 @@ public class Ending : MonoBehaviour
         //ChildB.SetActive(false);
 
         theOrder.NotMove();
+        theBGM.FadeOutMusic();
         yield return waitTime;
 
         Black.SetActive(true);
         yield return waitTime;
+        yield return waitTime;
+        yield return waitTime;
+        theBGM.Play(2);
+        theBGM.FadeInMusic();
 
         CameraManager camera = GameObject.Find("Main Camera").GetComponent<CameraManager>();
         camera.SetBound(GameObject.Find("bound_Cliff").GetComponent<BoxCollider2D>());
 
         Alvin.transform.position = new Vector3(44,-10, 2);
         Anna.transform.position = new Vector3(46,-10,2);
+        yield return waitTime;
         Black.SetActive(false);
         RememberPanel.SetActive(true);
         yield return waitTime;
@@ -220,6 +228,7 @@ public class Ending : MonoBehaviour
         thePlayer.currentMapName = "Title2";
         SceneManager.LoadScene("Title2");
         theFade.FadeOut(6f);
+        Alvin.SetActive(true);
         yield return new WaitForSeconds(3f);
 
         Title.SetActive(true);

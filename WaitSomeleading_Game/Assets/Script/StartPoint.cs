@@ -16,11 +16,15 @@ public class StartPoint : MonoBehaviour
 
     private Moving_Object thePlayer;
     private CameraManager theCamera;
+    private BGM_Manager theBGM;
+    private OrderManager theOrder;
 
     void Start()
     {
         theCamera = FindObjectOfType<CameraManager>();
         thePlayer = FindObjectOfType<Moving_Object>();
+        theBGM = FindObjectOfType<BGM_Manager>();
+        theOrder = FindObjectOfType<OrderManager>();
 
         StartPoint0 = GameObject.Find("StartPoint0");
         StartPoint1 = GameObject.Find("StartPoint1");
@@ -31,39 +35,68 @@ public class StartPoint : MonoBehaviour
 
         if (thePlayer.callLoad)
         {
+            if (thePlayer.currentMapName == "Village")
+            {
+                theBGM.Play(0);
+                theBGM.FadeInMusic();
+            }
+
+            else if (thePlayer.currentMapName == "Forest_Field")
+            {
+                theBGM.Play(1);
+                theBGM.FadeInMusic();
+            }
+
+            else if (thePlayer.currentMapName == "Cliff")
+            {
+                theBGM.Play(2);
+                theBGM.FadeInMusic();
+            }
             thePlayer.callLoad = false;
         }
 
         else
         {
-            SetStartPoint();
+            StartCoroutine(SetStartPoint());
         }
 
     }
 
-    public void SetStartPoint()
+    IEnumerator SetStartPoint()
     {
         if (thePlayer.currentMapName == "Title2")
         {
             thePlayer.transform.position = StartPoint4.transform.position;
+            theBGM.FadeOutMusic();
+            yield return new WaitUntil(()=> !theBGM.flag);
+            theBGM.Play(3);
         }
 
         else if (thePlayer.futureMapName == "Village" && startPoint == thePlayer.currentMapName) 
         {
             theCamera.transform.position = new Vector3(StartPoint1.transform.position.x, StartPoint1.transform.position.y, theCamera.transform.position.z);
             thePlayer.transform.position = StartPoint1.transform.position;
+            theBGM.Play(1);
+            theBGM.FadeInMusic();
+            theOrder.Move();
         }
 
         else if(thePlayer.futureMapName == "Forest_Field" && startPoint == thePlayer.currentMapName && thePlayer.currentMapName == "Cliff")
         {
             theCamera.transform.position = new Vector3(StartPoint3.transform.position.x, StartPoint3.transform.position.y, theCamera.transform.position.z);
             thePlayer.transform.position = StartPoint3.transform.position;
+            theBGM.Play(2);
+            theBGM.FadeInMusic();
+            theOrder.Move();
         }
 
         else if(thePlayer.futureMapName == "Forest_Field" && startPoint == thePlayer.currentMapName && thePlayer.currentMapName == "Village")
         {
             theCamera.transform.position = new Vector3(StartPoint0.transform.position.x, StartPoint0.transform.position.y, theCamera.transform.position.z);
             thePlayer.transform.position = StartPoint0.transform.position;
+            theBGM.Play(0);
+            theBGM.FadeInMusic();
+            theOrder.Move();
         }
 
 
@@ -71,12 +104,18 @@ public class StartPoint : MonoBehaviour
         {
             theCamera.transform.position = new Vector3(StartPoint2.transform.position.x, StartPoint2.transform.position.y, theCamera.transform.position.z);
             thePlayer.transform.position = StartPoint2.transform.position;
+            theBGM.Play(1);
+            theBGM.FadeInMusic();
+            theOrder.Move();
         }
 
         else if (thePlayer.futureMapName == "Title2" && thePlayer.currentMapName == "Village")
         {
             theCamera.transform.position = new Vector3(StartPoint5.transform.position.x, StartPoint5.transform.position.y, theCamera.transform.position.z);
             thePlayer.transform.position = StartPoint5.transform.position;
+            theBGM.Play(0);
+            theBGM.FadeInMusic();
+            theOrder.Move();
         }
     }
 

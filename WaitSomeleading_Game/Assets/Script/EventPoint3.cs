@@ -39,7 +39,8 @@ public class EventPoint3 : MonoBehaviour
 
     private WaitForSeconds waitTime = new WaitForSeconds(0.5f);
 
-    public bool eventOn = false; //true일 때 이벤트 실행 가능
+    public static bool eventOn = false; //true일 때 이벤트 실행 가능
+    public static bool TCA = false;
 
     void Start()
     {
@@ -50,6 +51,14 @@ public class EventPoint3 : MonoBehaviour
         thePlayer = FindObjectOfType<Moving_Object>();
         Anna = GameObject.Find("Player_Anna");
         Alvin = GameObject.Find("Player_Alvin");
+    }
+
+    void Update()
+    {
+        if (TCA)
+            TCarea.SetActive(true);
+        else
+            TCarea.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -94,7 +103,7 @@ public class EventPoint3 : MonoBehaviour
         theOrder.TurnUp();
 
         yield return new WaitForSeconds(2f);
-        TCarea.SetActive(true);
+        TCA = true;
         yield return waitTime;
 
         theDM.ShowDialogue(dialogue3);
