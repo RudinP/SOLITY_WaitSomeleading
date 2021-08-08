@@ -49,6 +49,7 @@ public class EventPoint3 : MonoBehaviour
         theFade = FindObjectOfType<FadeManager>();
         thePlayer = FindObjectOfType<Moving_Object>();
         Anna = GameObject.Find("Player_Anna");
+        Alvin = GameObject.Find("Player_Alvin");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

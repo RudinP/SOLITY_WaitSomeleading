@@ -66,6 +66,7 @@
      <Compile Include="Assets\Script\EventPoint1.cs" />
      <Compile Include="Assets\Script\Bound.cs" />
      <Compile Include="Assets\Script\FadeManager.cs" />
+     <Compile Include="Assets\Script\TitleStart.cs" />
      <Compile Include="Assets\Script\Moving_Object.cs" />
      <Compile Include="Assets\Script\TimeCapsuleManager.cs" />
      <Compile Include="Assets\Script\StartPoint.cs" />

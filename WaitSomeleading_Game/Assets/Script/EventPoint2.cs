@@ -33,6 +33,7 @@ public class EventPoint2 : MonoBehaviour
     private DialogueManager theDM;
     private OrderManager theOrder;
     private EventPoint3 theEvent3;
+    private Moving_Object thePlayer;
     private WaitForSeconds waitTime = new WaitForSeconds(0.5f);
     private bool flag;
 
@@ -43,11 +44,12 @@ public class EventPoint2 : MonoBehaviour
         theOrder = FindObjectOfType<OrderManager>();
         theDM = FindObjectOfType<DialogueManager>();
         theEvent3 = FindObjectOfType<EventPoint3>();
+        thePlayer = FindObjectOfType<Moving_Object>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!flag && Input.GetKey(KeyCode.UpArrow))
+        if (!flag && Input.GetKey(KeyCode.UpArrow) && thePlayer.currentMapName == "Cliff")
         {
             flag = true;
             StartCoroutine(StartEvent2());

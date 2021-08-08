@@ -25,17 +25,23 @@ public class DestroyOnTitle : MonoBehaviour
     GameObject[] DestroyObject;
 
     private Moving_Object thePlayer;
+    private Ending theEnding;
+    private SpriteRenderer _sprite;
+    private Color color;
+
+    private bool ShowAlvin = true;
 
     void Start()
     {
         thePlayer = FindObjectOfType<Moving_Object>();
+        DestroyObject[0] = GameObject.Find("Player_Alvin");
+        _sprite = DestroyObject[0].GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
         if(!DestroyObject[5])
         {
-            DestroyObject[0] = GameObject.Find("Player_Alvin");
             DestroyObject[1] = GameObject.Find("VIllage_NPC");
             DestroyObject[2] = GameObject.Find("EventPoint3");
             DestroyObject[3] = GameObject.Find("EndPoint");
@@ -43,12 +49,34 @@ public class DestroyOnTitle : MonoBehaviour
             DestroyObject[5] = GameObject.Find("event2");
         }
 
-        if(thePlayer.currentMapName == "Title2")
+        if (thePlayer.currentMapName == "Title2")
         {
-            for(int i = 0; i < DestroyObject.Length; i++)
-            {
-                Destroy(DestroyObject[i]);
-            }
+            color = _sprite.color;
+            color.a = 0.0f;
+            _sprite.color = color;
         }
+    }
+
+    public void Delete()
+    {
+        for (int i = 1; i < DestroyObject.Length; i++)
+        {
+            Destroy(DestroyObject[i]);
+        }
+
+        StartCoroutine(ActiveAlvin());
+    }
+
+    public void Continue()
+    {
+        StartCoroutine(ActiveAlvin());
+    }
+
+    IEnumerator ActiveAlvin()
+    {
+        yield return new WaitForSeconds(1f);
+        color = _sprite.color;
+        color.a = 255;
+        _sprite.color = color;
     }
 }

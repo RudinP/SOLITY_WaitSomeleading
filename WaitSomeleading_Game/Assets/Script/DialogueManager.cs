@@ -33,6 +33,9 @@ public class DialogueManager : MonoBehaviour
     public bool talking = false;
     private bool keyActivated = false;
 
+    public GameObject DPanel;
+    private Animator panelAnimator;
+
     void Start()
     {
         count = 0;
@@ -40,6 +43,7 @@ public class DialogueManager : MonoBehaviour
         Name.text = "";
         listSentences = new List<string>();
         listNames = new List<string>();
+        panelAnimator = DPanel.GetComponent<Animator>();
     }
 
     public void ShowDialogue(Dialogue dialogue) // 대화 출력
@@ -72,6 +76,8 @@ public class DialogueManager : MonoBehaviour
     {
         Name.text = listNames[count];
         keyActivated = true;
+        panelAnimator.SetBool("Appear", true);
+        yield return new WaitForSeconds(0.1f);
 
         for (int i = 0; i < listSentences[count].Length; i++)
         {
@@ -94,6 +100,7 @@ public class DialogueManager : MonoBehaviour
                 if (count == listSentences.Count)
                 {
                     StopAllCoroutines();
+                    panelAnimator.SetBool("Appear", false);
                     ExitDialogue();
                 }
 

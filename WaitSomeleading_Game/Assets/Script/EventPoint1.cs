@@ -34,6 +34,7 @@ public class EventPoint1 : MonoBehaviour
     public Dialogue dialogue8;
     private DialogueManager theDM;
     private OrderManager theOrder;
+    private Moving_Object thePlayer;
     private WaitForSeconds waitTime = new WaitForSeconds(0.5f);
     private bool flag;
 
@@ -43,11 +44,12 @@ public class EventPoint1 : MonoBehaviour
     {
         theOrder = FindObjectOfType<OrderManager>();
         theDM = FindObjectOfType<DialogueManager>();
+        thePlayer = FindObjectOfType<Moving_Object>();
     }
 
      private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(!flag && Input.GetKey(KeyCode.UpArrow))
+        if(!flag && Input.GetKey(KeyCode.UpArrow) && thePlayer.currentMapName == "Forest_Field")
         {
             flag = true;
             StartCoroutine(StartEvent3());

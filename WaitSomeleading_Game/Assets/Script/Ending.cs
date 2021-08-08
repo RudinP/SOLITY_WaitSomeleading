@@ -11,15 +11,18 @@ public class Ending : MonoBehaviour
 
     private DialogueManager theDM;
     private OrderManager theOrder;
+    private FadeManager theFade;
+    private Moving_Object thePlayer;
     private WaitForSeconds waitTime = new WaitForSeconds(0.5f);
 
-    private bool endCheck = false;
+    public bool endCheck = false;
 
     static public Ending instance2;
     public GameObject Alvin;
     public GameObject Anna;
     public GameObject RememberPanel;
     public GameObject Black;
+    public GameObject Title;
 
     bool EndCheck()
     {
@@ -45,6 +48,8 @@ public class Ending : MonoBehaviour
 
         theOrder = FindObjectOfType<OrderManager>();
         theDM = FindObjectOfType<DialogueManager>();
+        theFade = FindObjectOfType<FadeManager>();
+        thePlayer = FindObjectOfType<Moving_Object>();
         //endCheck = EndCheck();
         endCheck = true;
         Alvin = GameObject.Find("Player_Alvin");
@@ -105,8 +110,8 @@ public class Ending : MonoBehaviour
         Black.SetActive(true);
         yield return waitTime;
 
-        Alvin.transform.position = new Vector3(56, -19, 1);
-        Anna.transform.position = new Vector3(57, -19, 1);
+        Alvin.transform.position = new Vector3(57, -20, 1);
+        Anna.transform.position = new Vector3(59, -20, 1);
 
         Black.SetActive(false);
         yield return waitTime;
@@ -122,8 +127,15 @@ public class Ending : MonoBehaviour
         yield return new WaitUntil(() => !theDM.talking);
 
         theDM.ShowDialogue(dialogues[7]);
-        theOrder.Left(1.0f);
         yield return new WaitUntil(() => !theDM.talking);
+        theOrder.Left(0.05f);
+        yield return waitTime;
+        Anna.transform.position = new Vector3(59, -20, 1);
+        theOrder.Left(0.1f);
+        yield return new WaitForSeconds(0.08f);
+        Alvin.transform.position = new Vector3(57.5f, -20, 1);
+        yield return new WaitForSeconds(0.05f);
+
         Black.SetActive(true);
         yield return waitTime;
         Alvin.SetActive(false);
@@ -203,12 +215,20 @@ public class Ending : MonoBehaviour
         theDM.ShowDialogue(dialogues[18]);
         yield return new WaitUntil(() => !theDM.talking);
 
+        yield return waitTime;
+        theFade.FadeOut();
+        thePlayer.currentMapName = "Title2";
+        SceneManager.LoadScene("Title2");
+        theFade.FadeOut(6f);
+        yield return new WaitForSeconds(3f);
 
+        Title.SetActive(true);
 
-
-        endCheck = false;
+        theFade.FadeIn(0.01f);
+        yield return new WaitForSeconds(7f);
+        Title.SetActive(false);
         theOrder.Move();
 
-        SceneManager.LoadScene("Title2");
+        endCheck = false;
     }
 }
