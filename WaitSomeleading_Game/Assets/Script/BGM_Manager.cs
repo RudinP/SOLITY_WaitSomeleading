@@ -34,6 +34,7 @@ public class BGM_Manager : MonoBehaviour
 
     public void Play(int _playMusicTrack)
     {
+        source.volume = 0.0f;
         source.clip = clips[_playMusicTrack];
         source.Play();
     }
@@ -45,11 +46,13 @@ public class BGM_Manager : MonoBehaviour
 
     public void FadeOutMusic()
     {
+        StopAllCoroutines();
         StartCoroutine(FadeOut());
     }
 
     public void FadeInMusic()
     {
+        StopAllCoroutines();
         StartCoroutine(FadeIn());
     }
 

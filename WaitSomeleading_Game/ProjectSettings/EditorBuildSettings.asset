@@ -6,18 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Title2.unity
+    guid: c3bbc097d4efde843bcb77daed81f739
+  - enabled: 1
     path: Assets/Scenes/Village.unity
     guid: e8b044c5eb3d96d4083e3f82294d8fbd
   - enabled: 1
-    path: Assets/Scenes/Cliff.unity
-    guid: 3b506f95b83fcd243835d8fbb587d73b
-  - enabled: 1
     path: Assets/Scenes/Forest_Field.unity
     guid: afdfce52fe71c454891554c686463ad7
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Title2.unity
-    guid: c3bbc097d4efde843bcb77daed81f739
+    path: Assets/Scenes/Cliff.unity
+    guid: 3b506f95b83fcd243835d8fbb587d73b
   m_configObjects: {}
